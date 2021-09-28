@@ -7,3 +7,4 @@ This is a mandatory assignment for Back-end development with Python &amp; Django
 Viki
 
 ihis is a test.
+LIAT LIAT LIAT
