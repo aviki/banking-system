@@ -11,7 +11,7 @@ class Customer(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 #    phone = PhoneNumberField()
     RANK_CHOICES = [('G', 'Gold'), ('S', 'Silver'), ('B', 'Basic')]
-    rank = models.CharField(max_length=1, choices=RANK_CHOICES, blank=False)
+#    rank = models.CharField(max_length=1, choices=RANK_CHOICES, blank=False)
 
 
 

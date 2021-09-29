@@ -1,0 +1,13 @@
+{% extends "bank_app/base.html" %}
+
+{% block title %} Create new Customer account {% endblock %}
+
+{% block content %}
+Create Customer account
+<form method="post" action="">
+    {% csrf_token  %}
+
+    {{ form }}
+    <button type="submit", name="create">Create</button>
+</form>
+{% endblock %}
