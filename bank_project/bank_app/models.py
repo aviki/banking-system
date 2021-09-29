@@ -5,17 +5,14 @@ from django.contrib.auth.models import User
 import uuid
 from django.db.models import Sum
 
-class Customer(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    phone = PhoneNumberField()
-    RANK_CHOICES = [('G', 'Gold'), ('S', 'Silver'), ('B', 'Basic')]
-    rank = models.CharField(max_lenght=1, choices=RANK_CHOICES, blank=False)
+
 
 class Customer(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 #    phone = PhoneNumberField()
     RANK_CHOICES = [('G', 'Gold'), ('S', 'Silver'), ('B', 'Basic')]
     rank = models.CharField(max_length=1, choices=RANK_CHOICES, blank=False)
+
 
 
 class Account(models.Model):
@@ -36,5 +33,6 @@ class Ledger(models.Model):
     transaction = models.DecimalField(decimal_places=2, max_digits=12)
     ref = models.ForeignKey(Uid, on_delete=models.CASCADE)
     transaction_date = models.DateTimeField()
+
 
 # Create your models here.
