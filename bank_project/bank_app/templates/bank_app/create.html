@@ -7,7 +7,8 @@ Create Customer account
 <form method="post" action="">
     {% csrf_token  %}
 
-    {{ form }}
+    {{ customer_form }}
     <button type="submit", name="create">Create</button>
 </form>
+
 {% endblock %}

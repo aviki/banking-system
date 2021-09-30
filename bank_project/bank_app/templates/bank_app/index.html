@@ -8,6 +8,12 @@
 <p>Last name: {{ user.last_name }}</p>
 
 <p>My accounts:</p>
+{% for account in accounts %}
+<tr>
+    <td>{{account.balance.transaction__sum}}</td>
+    <td> <a href="{% url 'bank_app:details' account.pk %}">{{account.account_number}}</a></td>
+</tr>
+{% endfor %}
 <p></p>
 <button name="create" type='submit' onclick="location.href='{% url 'bank_app:create' %}'" >CREATE CUSTOMER ACCOUNT</button>
 {% endblock %}

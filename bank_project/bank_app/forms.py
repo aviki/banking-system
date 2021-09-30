@@ -9,3 +9,6 @@ class CreateNewCustomer(forms.Form):
     email = forms.EmailField(label="Email")
 
     rank = forms.ChoiceField(choices=Customer.RANK_CHOICES, widget=forms.RadioSelect)
+
+class CreateNewAccount(forms.Form):
+    customer_id = forms.IntegerField(label="Customer ID")

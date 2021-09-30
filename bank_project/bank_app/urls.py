@@ -6,4 +6,6 @@ app_name = 'bank_app'
 urlpatterns = [
         path('', views.index, name='index'),
         path('create', views.create, name='create'),
-    ]
+        path('createaccount', views.createaccount, name='createaccount'),
+        path('details/<int:pk>', views.details, name='details')
+        ]
