@@ -2,7 +2,13 @@
 
 {% block content %}
 <h3>Account details</h3>
-<h1>{{account_number.balance.transaction__sum}} kr</h1>
+<h1>
+    {% if account_number.balance.transaction__sum %}
+        {{account_number.balance.transaction__sum}}
+    {% else %}
+        {{0}}
+    {% endif %}
+kr</h1>
 <p>{{account_number}}</p>
 <table>
     {% for transaction in transactions %}

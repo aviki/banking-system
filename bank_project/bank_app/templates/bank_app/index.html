@@ -10,7 +10,11 @@
 <p>My accounts:</p>
 {% for account in accounts %}
 <tr>
-    <td>{{account.balance.transaction__sum}}</td>
+    <td>{% if account.balance.transaction__sum %}
+        {{account.balance.transaction__sum}}
+        {% else %}
+        {{0}}
+        {% endif %}</td>
     <td> <a href="{% url 'bank_app:details' account.pk %}">{{account.account_number}}</a></td>
 </tr>
 {% endfor %}
