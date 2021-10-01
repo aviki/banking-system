@@ -10,8 +10,10 @@
 <nav>
     <ul>
         <li><a href="{% url 'bank_app:index' %}">Home</a></li>
+        {% if user.is_staff  %}
         <li><a href="{% url 'bank_app:create' %}">Create</a></li>
         <li><a href="{% url 'bank_app:createaccount' %}">Create account</a></li>
+        {% endif %}
         <li>
             <span>{{ user }}</span>
             <ul>
