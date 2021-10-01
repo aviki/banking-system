@@ -3,7 +3,24 @@ from .models import Customer, Account, Ledger
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
 from .forms import CreateNewCustomer, CreateNewAccount
+from django.contrib.admin.views.decorators import staff_member_required
+from django.contrib.auth.models import User
 # Create your views here.
+
+
+##todo combine with index
+@staff_member_required
+def staff_dashboard(request):
+    users = User.objects.all()
+    customer = Customer.objects.all()
+    accounts = Account.objects.all()
+    context = {
+            'users': users,
+            'customer': customer,
+            'accounts': accounts
+            }
+    return render(request, 'bank_app/dashboard.html', context)
+
 
 @login_required
 def index(request):
@@ -16,7 +33,6 @@ def index(request):
 
 
     return render(request, 'bank_app/index.html', context)
-
 
 def create(response):
     customer_form = CreateNewCustomer()
