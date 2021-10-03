@@ -2,28 +2,38 @@
 
 
 {% block content %}
+
 <h3>STAFF details</h3>
 <p>Username: {{ user.username }}</p>
 <p>First name: {{ user.first_name }}</p>
 <p>Last name: {{ user.last_name }}</p>
-<p>Is staff? {% if user.is_staff == 1 %} "is staff" {% else %} "is not staff" {% endif %}</p>
+<p>Staff: {% if user.is_staff == 1 %} Yes {% else %} No {% endif %}</p>
 
 
 <h3>All users</h3>
-{% for user in users  %}
-<tr>
-    <td>First name: {{user.first_name}}</td>
-    <td>Last name: {{user.last_name}}</td>
-</tr>
+<table>
+    {% for user in users  %}
+        <tr>
+            <td>First name: {{user.first_name}}</td>
+            <td>Last name: {{user.last_name}}</td>
+        </tr>
+    {% endfor %}
+</table>
+
 <hr>
-{% endfor %}
 
 <h3>All accounts</h3>
-{% for account in accounts %}
-<tr>
-    <td>Account: {{account.account_number }}</td>
-</tr>
-{% endfor %}
+<table>
+    {% for account in accounts %}
+        <tr>
+            <td>Account owner: {{ account.user }}</td>
+            <td>Account: {{account.account_number }}</td>
+        </tr>
+    {% endfor %}
+</table>
+
+<hr>
 
 <button name="create" type='submit' onclick="location.href='{% url 'bank_app:create' %}'" >CREATE CUSTOMER ACCOUNT</button>
+
 {% endblock %}
