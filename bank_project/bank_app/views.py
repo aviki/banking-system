@@ -3,10 +3,10 @@ from .models import Customer, Account, Ledger
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.http import HttpResponseRedirect, HttpResponse
 from django.urls import reverse
-from .forms import CreateNewCustomer, CreateNewAccount
 from django.contrib.admin.views.decorators import staff_member_required
 from django.contrib.auth.models import User
-# Create your views here.
+from .forms import CreateNewCustomer, CreateNewAccount, MakeTransfer
+from django.db import transaction
 
 @login_required
 def index(request):
@@ -73,4 +73,26 @@ def details(request, pk):
             }
     return render(request, 'bank_app/details.html', context)
 
+def transfer(request):
+    if request.method=="POST":
+        with transaction.atomic():
+            from_account = request.POST['from_account']
+            if Account.objects.get(account_number=from_account):
+                to_account = request.POST['to_account']
+                if Account.objects.filter(account_number=to_account):
+                    amount = int(request.POST['amount'])
+                    uid = Uid()
+                    uid.save()
+                    Ledger.objects.create(account=Account.objects.get(account_number=from_account), transaction=amount*-1, ref=Uid.objects.last())
+                    Ledger.objects.create(account=Account.objects.get(account_number=to_account), transaction=amount, ref=Uid.objects.last())
+  #accounts = Account.objects.filter(user=request.user)
+  #accounts_numbers=accounts.values_list('account_number')
+    transfer_form = MakeTransfer()
+    context = {
+        'transfer_form':transfer_form,
+    #    'accounts':accounts,
+     #   'accounts_numbers':accounts_numbers,
+          }
+
+    return render(request, 'bank_app/transfer.html', context)
 

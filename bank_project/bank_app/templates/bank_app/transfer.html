@@ -1,0 +1,14 @@
+{% extends "bank_app/base.html" %}
+
+{% block title %} Create new Customer account {% endblock %}
+
+{% block content %}
+Make Money Transfer
+<form method="post" action="">
+    {% csrf_token  %}
+
+    {{ transfer_form }}
+    <button type="submit", name="create">Transfer</button>
+</form>
+
+{% endblock %}
