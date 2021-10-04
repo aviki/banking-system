@@ -5,7 +5,7 @@ from django.http import HttpResponseRedirect, HttpResponse
 from django.urls import reverse
 from django.contrib.admin.views.decorators import staff_member_required
 from django.contrib.auth.models import User
-from .forms import CreateNewCustomer, CreateNewAccount, MakeTransfer
+from .forms import CreateNewCustomer, CreateNewAccount, MakeTransfer, AddCustomerInfo
 from django.db import transaction
 
 @login_required
@@ -59,15 +59,16 @@ def create(request):
             username = request.POST['username']
             first_name = request.POST['first_name']
             last_name = request.POST['last_name']
+            password = request.POST['password']
             email = request.POST['email']
             rank = request.POST['rank']
             phone = request.POST['phone']
 
             try:
-                 ins = User(username=username, first_name=first_name, last_name=last_name, email=email)
+                 ins = User(username=username, first_name=first_name, last_name=last_name, email=email, password=password)
                  ins.save()
 
-                 user = User.objects.get('id')
+                 user = User.objects.get(username=username)
 
                  rank_ins = Customer(user=user, rank=rank, phone=phone)
                  rank_ins.save()

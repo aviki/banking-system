@@ -14,8 +14,8 @@ from django.core.exceptions import ValidationError
 class CreateNewCustomer(forms.ModelForm):
     class Meta:
         model = User
-        fields = ['username', 'first_name', 'last_name', 'email']
-        labels = {'username':'Username', 'first_name':'First Name', 'last_name':'Last Name', 'email':'Email'}
+        fields = ['username', 'first_name', 'last_name', 'password', 'email']
+        labels = {'username':'Username', 'first_name':'First Name', 'last_name':'Last Name', 'password':'Password', 'email':'Email'}
 
 class AddCustomerInfo(forms.ModelForm):
     class Meta:
