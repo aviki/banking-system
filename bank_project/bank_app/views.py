@@ -59,12 +59,13 @@ def create(request):
             username = request.POST['username']
             first_name = request.POST['first_name']
             last_name = request.POST['last_name']
+            password = request.POST['password']
             email = request.POST['email']
             rank = request.POST['rank']
             phone = request.POST['phone']
 
             try:
-                 ins = User(username=username, first_name=first_name, last_name=last_name, email=email)
+                 ins = User(username=username, first_name=first_name, last_name=last_name, email=email, password=password)
                  ins.save()
 
                  user = User.objects.get(username=username)
