@@ -46,7 +46,7 @@ def create(request):
                  ins = User(username=username, first_name=first_name, last_name=last_name, email=email)
                  ins.save()
 
-                 user = User.objects.get(username)
+                 user = User.objects.get('id')
 
                  rank_ins = Customer(user=user, rank=rank, phone=phone)
                  rank_ins.save()
