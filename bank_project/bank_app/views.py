@@ -1,11 +1,11 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from .models import Customer, Account, Ledger
+from .models import Customer, Account, Ledger, Uid
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.http import HttpResponseRedirect, HttpResponse
 from django.urls import reverse
 from django.contrib.admin.views.decorators import staff_member_required
 from django.contrib.auth.models import User
-from .forms import CreateNewCustomer, CreateNewAccount, MakeTransfer
+from .forms import CreateNewCustomer, CreateNewAccount, MakeTransfer, AddCustomerInfo
 from django.db import transaction
 
 @login_required
@@ -19,11 +19,11 @@ def index(request):
 @staff_member_required
 def staff_dashboard(request):
     users = User.objects.all()
-    customer = Customer.objects.all()
+    customers = Customer.objects.all()
     accounts = Account.objects.all()
     context = {
             'users': users,
-            'customer': customer,
+            'customers': customers,
             'accounts': accounts
             }
     return render(request, 'bank_app/dashboard.html', context)
@@ -67,7 +67,7 @@ def create(request):
                  ins = User(username=username, first_name=first_name, last_name=last_name, email=email)
                  ins.save()
 
-                 user = User.objects.get(username)
+                 user = User.objects.get(username=username)
 
                  rank_ins = Customer(user=user, rank=rank, phone=phone)
                  rank_ins.save()

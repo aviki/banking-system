@@ -1,8 +1,9 @@
 {% extends "bank_app/base.html" %}
 
-
+{% block header %}
+<h1>Welcome {{ user }}</h1>
+{% endblock %}
 {% block content %}
-<h1>Testing user details!</h1>
 <p>Username: {{ user.username }}</p>
 <p>First name: {{ user.first_name }}</p>
 <p>Last name: {{ user.last_name }}</p>
@@ -10,14 +11,18 @@
 
 
 <p>My accounts:</p>
-{% for account in accounts %}
-<tr>
-    <td>{% if account.balance.transaction__sum %}
-        {{account.balance.transaction__sum}}
-        {% else %}
-        {{0}}
-        {% endif %}</td>
-    <td> <a href="{% url 'bank_app:details' account.pk %}">{{account.account_number}}</a></td>
-</tr>
-{% endfor %}
+<table>
+    {% for account in accounts %}
+    <tr>
+        <td><h3>{% if account.balance.transaction__sum %}
+            {{account.balance.transaction__sum|slice:"2:"}}
+            {% else %}
+            {{0}}
+            {% endif %}
+            DKK</h3>
+    </td>
+        <td> <a href="{% url 'bank_app:details' account.pk %}">{{account.account_number}}</a></td>
+    </tr>
+    {% endfor %}
+</table>
 {% endblock %}

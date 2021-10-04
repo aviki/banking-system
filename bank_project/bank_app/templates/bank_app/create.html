@@ -1,7 +1,7 @@
 {% extends "bank_app/base.html" %}
 
-{% block title %} Create new Customer account {% endblock %}
-
+{% block title %} Create new Customer {% endblock %}
+{% block header %} <h1>Create Customer</h1> {% endblock %}
 {% block content %}
 <form method="post" action="">
     {% csrf_token  %}
