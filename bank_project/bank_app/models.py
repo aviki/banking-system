@@ -39,7 +39,7 @@ class Ledger(models.Model):
     account = models.ForeignKey(Account, on_delete=models.CASCADE)
     transaction = models.DecimalField(decimal_places=2, max_digits=12)
     ref = models.ForeignKey(Uid, on_delete=models.CASCADE)
-    transaction_date = models.DateTimeField()
+    transaction_date = models.DateTimeField(auto_now_add=True, blank=True)
 
 
 # Create your models here.
