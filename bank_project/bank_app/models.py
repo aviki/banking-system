@@ -5,13 +5,14 @@ from django.contrib.auth.models import User
 import uuid
 from django.db.models import Sum
 from django.db.models.functions import Coalesce
-
+from django.core.validators import RegexValidator
+from django.core.exceptions import ValidationError
 
 class Customer(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-#    phone = PhoneNumberField()
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
+    phone = models.CharField(max_length=8, blank=True)
     RANK_CHOICES = [('G', 'Gold'), ('S', 'Silver'), ('B', 'Basic')]
-#    rank = models.CharField(max_length=1, choices=RANK_CHOICES, blank=False)
+    rank = models.CharField(max_length=1, choices=RANK_CHOICES, blank='B')
     def __str__(self):
         return f"{self.user}"
 

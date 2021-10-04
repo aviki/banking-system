@@ -3,12 +3,14 @@
 {% block title %} Create new Customer account {% endblock %}
 
 {% block content %}
-Create Customer account
 <form method="post" action="">
     {% csrf_token  %}
 
     {{ customer_form }}
-    <button type="submit", name="create">Create</button>
+    {% csrf_token  %}
+    {{ extra_form }}
+    <button type="submit", name="create">Create Customer</button>
 </form>
+<h2>{{ note }}</h2>
 
 {% endblock %}
