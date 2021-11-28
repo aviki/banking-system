@@ -54,7 +54,6 @@ MIDDLEWARE = [
 ROOT_URLCONF = 'bank_project.urls'
 
 LOGIN_REDIRECT_URL = '/'
-LOGOUT_REDIRECT_URL = '/'
 
 TEMPLATES = [
     {
